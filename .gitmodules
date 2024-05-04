@@ -1,3 +1,6 @@
 [submodule "personal-website-builder-back"]
 	path = personal-website-builder-back
 	url = https://github.com/personal-website-builder/personal-website-builder-back.git
+[submodule "personal-website-builder-front"]
+	path = personal-website-builder-front
+	url = https://github.com/personal-website-builder/personal-website-builder-front.git
