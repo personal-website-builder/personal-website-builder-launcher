@@ -1,14 +1,41 @@
-version: "3"
+version: "3.8"
 
 services:
   # BACK
   back:
     build: ./personal-website-builder-back
     volumes:
-      - ./personal-website-builder-back:/usr/src/app
-    command: node_modules/.bin/nest start --debug 0.0.0.0:9229 --watch
+      - ./personal-website-builder-back/src:/usr/src/app/src
+      - ./personal-website-builder-back/prisma:/usr/src/app/prisma
+      - ./personal-website-builder-back/package.json:/usr/src/app/package.json
+      - ./personal-website-builder-back/package-lock.json:/usr/src/app/package-lock.json
+    depends_on:
+      - postgres
+    command: npm run start:debug
     environment:
       - PORT=3000
+      - DATABASE_URL=postgres://postgres:postgres@postgres:5432/personal-website-builder
     ports:
       - "3000:3000"
       - "9229:9229"
+
+  # FRONT
+  front:
+    build: ./personal-website-builder-front
+    volumes:
+      - ./personal-website-builder-front/src:/usr/src/app/src
+    command: npm run start
+    ports:
+      - "4200:4200"
+    depends_on:
+      - back
+
+  postgres:
+    image: postgres:16.3
+    environment:
+      POSTGRES_USER: postgres
+      POSTGRES_PASSWORD: postgres
+      POSTGRES_DB: personal-website-builder
+    ports:
+      - "5432:5432"
+    
