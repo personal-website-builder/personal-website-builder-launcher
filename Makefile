@@ -32,3 +32,12 @@ npmib:
 npmi:
 	@make npmi-back
 	@make npmi-front
+
+pmd:
+	docker-compose exec back sh -c "npx prisma migrate dev"
+pmr:
+	docker-compose exec back sh -c "npx prisma migrate reset"
+pmg:
+	docker-compose exec back sh -c "npx prisma generate"
+pdbs:
+	docker-compose exec back sh -c "npx prisma db seed"
