@@ -17,6 +17,12 @@ lb:
 	docker-compose logs --follow back
 lf:
 	docker-compose logs --follow front
+r:
+	docker-compose restart
+rb:
+	docker-compose restart back
+rf:
+	docker-compose restart front
 
 eb:
 	docker-compose exec back sh
