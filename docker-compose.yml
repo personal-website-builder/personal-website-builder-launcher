@@ -9,7 +9,6 @@ services:
       - ./personal-website-builder-back/prisma:/usr/src/app/prisma
       - ./personal-website-builder-back/package.json:/usr/src/app/package.json
       - ./personal-website-builder-back/package-lock.json:/usr/src/app/package-lock.json
-      - ./personal-website-builder-back/nest-cli.json:/usr/src/app/nest-cli.json
     depends_on:
       - postgres
     command: npm run start:debug
